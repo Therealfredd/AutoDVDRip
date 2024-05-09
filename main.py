@@ -3,6 +3,7 @@ import subprocess
 from time import sleep
 import psutil
 import ctypes
+import argparse
 
 
 def detect_dvd_drive():
@@ -51,9 +52,7 @@ def convert_dvd(dvd_drive, output_folder, makemkv_path = r"C:\Program Files (x86
     subprocess.run(command, shell=True)
 
 
-def main(destination_folder):
-    output_folder = destination_folder
-
+def main(output_folder):
     while True:
         dvd_drive = detect_dvd_drive()
         if dvd_drive:
@@ -71,4 +70,7 @@ def main(destination_folder):
 
 
 if __name__ == "__main__":
-    main("output")
+    parser = argparse.ArgumentParser(description='Process some integers.')
+    parser.add_argument('output_folder', type=str, help='The path to the output folder where the DVD will be converted and saved.')
+    args = parser.parse_args()
+    main(args.output_folder)

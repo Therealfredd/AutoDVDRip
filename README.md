@@ -41,7 +41,7 @@ Install dependencies
 
 Start Running:
 ```bash
-python3 main.py 
+python3 main.py PATH_TO_OUTPUT_FOLDER
 ```
 
 
