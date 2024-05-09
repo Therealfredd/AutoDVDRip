@@ -51,8 +51,8 @@ def convert_dvd(dvd_drive, output_folder, makemkv_path = r"C:\Program Files (x86
     subprocess.run(command, shell=True)
 
 
-def main():
-    output_folder = "output"
+def main(destination_folder):
+    output_folder = destination_folder
 
     while True:
         dvd_drive = detect_dvd_drive()
@@ -71,4 +71,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main("output")
