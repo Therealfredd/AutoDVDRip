@@ -178,7 +178,7 @@ def main(output_folder,watch_drive):
         if not watch_drive:
             dvd_drive = detect_dvd_drive()
         else:
-            dvd_drive = args.watch_drive + "\\"
+            dvd_drive = args.watch_drive + ":\\"
         if dvd_drive:
             _, serial_number = get_volume_information(dvd_drive)
             if str(serial_number) in processed_dvds:
