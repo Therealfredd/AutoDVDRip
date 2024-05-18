@@ -165,7 +165,7 @@ def sanitize_dvd_name(name):
         name = name.replace(char, '')
     return name
 
-def main(output_folder):
+def main(output_folder,watch_drive):
     processed_dvds = set()
 
     try:
@@ -175,7 +175,10 @@ def main(output_folder):
         pass
 
     while True:
-        dvd_drive = detect_dvd_drive()
+        if not watch_drive:
+            dvd_drive = detect_dvd_drive()
+        else:
+            dvd_drive = args.watch_drive + "\\"
         if dvd_drive:
             _, serial_number = get_volume_information(dvd_drive)
             if str(serial_number) in processed_dvds:
@@ -196,7 +199,10 @@ def main(output_folder):
         sleep(15)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Automate DVD conversion to MP4 format.')
-    parser.add_argument('output_folder', nargs='?', default='output', type=str, help='The path to the output folder where the DVD will be converted and saved.')
+    parser = argparse.ArgumentParser(description='Automate DVD conversion to MP4.')
+    parser.add_argument('output_folder', nargs='?', default='output', type=str,
+                        help='The path to the output folder where the DVD will be converted and saved.')
+    parser.add_argument('watch_drive', type=str, default='',
+                        help='The drive letter or path to watch for DVD insertion. Default=automatic detection.')
     args = parser.parse_args()
-    main(args.output_folder)
+    main(args.output_folder, args.watch_drive)
