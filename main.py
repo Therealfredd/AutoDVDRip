@@ -192,7 +192,7 @@ def main(output_folder,watch_drive):
                 with open("processed_dvds.log", "a") as file:
                     file.write(f"{serial_number}\n")
             else:
-                print("Unable to retrieve DVD serial number, processing may be duplicated in future runs.")
+                print("Unable to retrieve DVD serial number. Check drive letter")
 
         else:
             print("No DVD detected. Checking again in 15 seconds...")
